@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: transparent; }
+  * { box-sizing: border-box; }
+  .nw { font-family: 'Source Sans 3', Arial, sans-serif; max-width: 880px; margin: 0 auto; padding: 8px; color: #23262B; }
+  .nw-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+  .nw-kicker { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #B08D57; margin-bottom: 7px; }
+  .nw-title { font-family: 'Spectral', Georgia, serif; font-size: 27px; font-weight: 600; color: #1F3A5F; line-height: 1.1; margin: 0; }
+  .nw-upd { font-size: 12px; color: #9A917F; white-space: nowrap; }
+  .nw-rule { height: 1px; background: #E6E0D3; margin: 14px 0 18px; }
+  .nw-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .nw-tab { font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid #E6E0D3; background: #FBFAF6; color: #6B6B66; padding: 9px 16px; border-radius: 99px; transition: all .2s; }
+  .nw-tab:hover { border-color: #B08D57; color: #1F3A5F; }
+  .nw-tab.on { background: #1F3A5F; border-color: #1F3A5F; color: #F4F1EA; }
+  .nw-list { display: grid; gap: 11px; }
+  .nw-card { display: flex; gap: 16px; align-items: flex-start; text-decoration: none; background: #FBFAF6; border: 1px solid #E6E0D3; border-radius: 8px; padding: 16px 18px; transition: border-color .2s, box-shadow .2s, transform .2s; }
+  .nw-card:hover { border-color: #B08D57; box-shadow: 0 4px 16px rgba(31,58,95,0.07); transform: translateY(-1px); }
+  .nw-num { flex: none; font-family: 'Spectral', Georgia, serif; font-size: 17px; font-weight: 600; color: #B08D57; width: 26px; line-height: 1.45; }
+  .nw-body { min-width: 0; }
+  .nw-h { display: block; font-size: 16px; font-weight: 600; color: #1F3A5F; line-height: 1.35; margin: 0 0 6px; }
+  .nw-meta { display: block; font-size: 12px; color: #9A917F; }
+  .nw-meta .src { color: #B08D57; font-weight: 600; }
+  .nw-arrow { margin-left: auto; flex: none; color: #C9B79A; align-self: center; }
+  .nw-state { text-align: center; padding: 40px 0; color: #9A917F; font-size: 14px; }
+  .nw-spin { width: 26px; height: 26px; border: 3px solid #E6E0D3; border-top-color: #B08D57; border-radius: 50%; margin: 0 auto 14px; animation: nw-rot 0.8s linear infinite; }
+  @keyframes nw-rot { to { transform: rotate(360deg); } }
+  .nw-foot { font-size: 11px; color: #9A917F; margin-top: 18px; line-height: 1.5; text-align: center; }
+  .nw-foot a { color: #B08D57; }
+  .vy-intro { font-size: 14.5px; line-height: 1.6; color: #34342F; margin-bottom: 16px; }
+  .vy-card { background: #FBFAF6; border: 1px solid #E6E0D3; border-radius: 8px; padding: 20px 22px; margin-bottom: 14px; }
+  .vy-sec-t { font-family: 'Spectral', Georgia, serif; font-size: 17px; font-weight: 600; color: #1F3A5F; margin-bottom: 12px; }
+  .vy-legend { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-bottom: 12px; }
+  .vy-lvl { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: #34342F; }
+  .vy-lvl .dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+  .vy-note { font-size: 13px; color: #6B6B66; margin: 0 0 12px; line-height: 1.5; }
+  .vy-link { display: inline-block; font-size: 14px; font-weight: 600; color: #1F3A5F; text-decoration: none; border-bottom: 1.5px solid #B08D57; padding-bottom: 1px; }
+  .vy-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .vy-dl { font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; border: none; background: linear-gradient(90deg,#1F3A5F,#2C507F); color: #F4F1EA; padding: 10px 16px; border-radius: 99px; transition: filter .2s; }
+  .vy-dl:hover { filter: brightness(1.12); }
+  .vy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 28px; }
+  .vy-sec .vy-sec-t { font-family: 'Source Sans 3', Arial, sans-serif; font-size: 13.5px; color: #B08D57; text-transform: uppercase; letter-spacing: 0.04em; margin: 10px 0 8px; }
+  .vy-ul { list-style: none; padding: 0; margin: 0 0 6px; }
+  .vy-ul li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; color: #34342F; margin-bottom: 8px; }
+  .vy-ul .cb { flex: none; width: 15px; height: 15px; border: 1.5px solid #B08D57; border-radius: 3px; margin-top: 2px; }
+  @media (max-width: 640px) { .vy-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) { .nw-title { font-size: 22px; } .nw-num { display: none; } }
+</style>
+</head>
+<body>
+  <div class="nw">
+    <div class="nw-head">
+      <div>
+        <div class="nw-kicker">Veille assurance · Mise à jour quotidienne</div>
+        <h1 class="nw-title">Actualités &amp; réglementation</h1>
+      </div>
+      <div class="nw-upd" id="nwUpd"></div>
+    </div>
+    <div class="nw-rule"></div>
+    <div class="nw-tabs" id="nwTabs">
+      <button class="nw-tab on" data-feed="actu">📰 Actualités du secteur</button>
+      <button class="nw-tab" data-feed="particulier">👤 Particuliers</button>
+      <button class="nw-tab" data-feed="tns">💼 Pro &amp; entreprises</button>
+      <button class="nw-tab" data-feed="loi">⚖️ Loi &amp; réglementation</button>
+      <button class="nw-tab" data-panel="voyage">✈️ Voyage</button>
+    </div>
+    <div class="nw-list" id="nwList">
+      <div class="nw-state"><div class="nw-spin"></div>Chargement des dernières actualités…</div>
+    </div>
+    <div class="nw-foot" id="nwFoot"></div>
+  </div>
+  <script>
+  (function () {
+    var FEEDS = {
+      actu: { q: 'assurance' },
+      particulier: { q: 'assurance habitation auto santé particulier' },
+      tns:  { q: 'assurance entreprise professionnel courtier' },
+      loi:  { q: 'assurance réglementation ACPR loi' }
+    };
+    var MAX = 9;
+    var cache = {};
+    var TTL = 3 * 3600 * 1000; // 3 h : au-delà, on rafraîchit en arrière-plan
+    function lsGet(key) { try { return JSON.parse(localStorage.getItem('nwcache_' + key) || 'null'); } catch (e) { return null; } }
+    function lsSet(key, items) { try { localStorage.setItem('nwcache_' + key, JSON.stringify({ t: Date.now(), items: items })); } catch (e) {} }
+    var listEl = document.getElementById('nwList');
+    var updEl = document.getElementById('nwUpd');
+    var footEl = document.getElementById('nwFoot');
+    function gnewsUrl(q) { return 'https://news.google.com/rss/search?q=' + encodeURIComponent(q + ' when:7d') + '&hl=fr&gl=FR&ceid=FR:fr'; }
+    function proxies(target) {
+      return [
+        { u: 'https://api.allorigins.win/raw?url=' + encodeURIComponent(target), json: false },
+        { u: 'https://api.allorigins.win/get?url=' + encodeURIComponent(target), json: true },
+        { u: 'https://api.codetabs.com/v1/proxy/?quest=' + encodeURIComponent(target), json: false }
+      ];
+    }
+    function timeAgo(d) {
+      var s = Math.floor((Date.now() - d.getTime()) / 1000);
+      if (s < 3600) return 'il y a ' + Math.max(1, Math.floor(s/60)) + ' min';
+      if (s < 86400) return 'il y a ' + Math.floor(s/3600) + ' h';
+      var j = Math.floor(s/86400); return j <= 1 ? 'hier' : 'il y a ' + j + ' jours';
+    }
+    function cleanTitle(t, src) { if (src) { var suff = ' - ' + src; if (t.slice(-suff.length) === suff) t = t.slice(0, -suff.length); } return t; }
+    function fetchOne(p) {
+      var ctrl = new AbortController();
+      var to = setTimeout(function(){ ctrl.abort(); }, 6000);
+      return fetch(p.u, { signal: ctrl.signal }).then(function (r) {
+        clearTimeout(to); if (!r.ok) throw 0; return r.text();
+      }).then(function (txt) {
+        if (p.json) { try { txt = JSON.parse(txt).contents; } catch (e) {} }
+        var doc = new DOMParser().parseFromString(txt, 'text/xml');
+        if (!doc.querySelector('item')) throw 0;
+        return doc;
+      });
+    }
+    function tryChain(list) {
+      return new Promise(function (resolve, reject) {
+        var pending = list.length, done = false;
+        list.forEach(function (p) {
+          fetchOne(p).then(function (doc) { if (!done) { done = true; resolve(doc); } })
+            .catch(function () { pending--; if (pending === 0 && !done) reject(); });
+        });
+      });
+    }
+    function fetchFeed(target) {
+      return tryChain(proxies(target)).catch(function () {
+        return new Promise(function (res) { setTimeout(res, 1800); }).then(function () { return tryChain(proxies(target)); });
+      });
+    }
+    function render(items) {
+      if (!items.length) { listEl.innerHTML = '<div class="nw-state">Aucune actualité trouvée pour le moment. Réessayez plus tard.</div>'; return; }
+      var html = '';
+      items.forEach(function (it, i) {
+        html += '<a class="nw-card" href="' + it.link + '" target="_blank" rel="noopener">' +
+          '<span class="nw-num">' + (i+1 < 10 ? '0'+(i+1) : (i+1)) + '</span>' +
+          '<span class="nw-body"><span class="nw-h">' + it.title + '</span>' +
+            '<span class="nw-meta"><span class="src">' + (it.source || 'Actualité') + '</span> · ' + it.ago + '</span></span>' +
+          '<span class="nw-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>' +
+        '</a>';
+      });
+      listEl.innerHTML = html;
+    }
+    var CHECKLIST = [
+      ['🛡️ Assurance &amp; santé', [
+        'Souscrire une <b>assurance voyage</b> avec assistance rapatriement (la carte CEAM ne couvre que l\'UE/EEE).',
+        'Vérifier les <b>plafonds frais médicaux</b> et la prise en charge hospitalière à l\'étranger.',
+        'Noter le <b>numéro d\'assistance 24/7</b> de l\'assureur et l\'emporter avec soi.',
+        'Vérifier la couverture <b>annulation, bagages et responsabilité civile</b> à l\'étranger.'
+      ]],
+      ['📄 Documents', [
+        'Passeport valable <b>6 mois après le retour</b> + visa si requis.',
+        'Photocopies (papier + numérique) du passeport, billets et attestation d\'assurance.',
+        'Permis de conduire international si vous comptez conduire.',
+        'Coordonnées de l\'ambassade / consulat de France sur place.'
+      ]],
+      ['💉 Santé', [
+        'Consulter un centre de <b>vaccinations internationales</b> 4 à 6 semaines avant.',
+        'Vaccins à jour + éventuel traitement antipaludéen selon la destination.',
+        'Trousse à pharmacie et ordonnances (noms de molécules) pour vos traitements.'
+      ]],
+      ['🧭 Sécurité &amp; pratique', [
+        'Consulter les <b>Conseils aux voyageurs</b> officiels pour votre pays.',
+        'S\'inscrire sur <b>Ariane</b> (alertes du Quai d\'Orsay).',
+        'Prévoir moyens de paiement variés et un peu d\'espèces en devises.',
+        'Partager votre itinéraire avec un proche.'
+      ]]
+    ];
+    function buildChecklistHTML() {
+      var rows = CHECKLIST.map(function (sec) {
+        var items = sec[1].map(function (t) { return '<li><span class="bx"></span><span>' + t + '</span></li>'; }).join('');
+        return '<h2>' + sec[0] + '</h2><ul>' + items + '</ul>';
+      }).join('');
+      return '<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8">' +
+        '<title>Checklist voyage hors Union européenne — Auraline Assurances</title>' +
+        '<style>@page{size:A4;margin:18mm}body{font-family:Georgia,serif;color:#23262B;max-width:720px;margin:0 auto;padding:24px}' +
+        '.k{font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#B08D57}' +
+        'h1{color:#1F3A5F;font-size:26px;margin:6px 0 2px}.sub{font-family:Arial,sans-serif;color:#6B6B66;font-size:13px;margin-bottom:18px}' +
+        'hr{border:none;border-top:1px solid #E6E0D3;margin:16px 0}' +
+        'h2{font-family:Arial,sans-serif;color:#1F3A5F;font-size:15px;margin:18px 0 8px}' +
+        'ul{list-style:none;padding:0;margin:0}li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;margin-bottom:7px}' +
+        '.bx{flex:none;width:14px;height:14px;border:1.5px solid #B08D57;border-radius:3px;margin-top:3px}' +
+        '.foot{font-family:Arial,sans-serif;font-size:11px;color:#9A917F;margin-top:24px;border-top:1px solid #E6E0D3;padding-top:12px}' +
+        '</style></head><body>' +
+        '<div class="k">Auraline Assurances · Courtage</div>' +
+        '<h1>Checklist avant un voyage hors UE</h1>' +
+        '<div class="sub">À vérifier idéalement 4 à 6 semaines avant le départ.</div><hr>' +
+        rows +
+        '<div class="foot">Document fourni à titre informatif. Vérifiez les Conseils aux voyageurs officiels (diplomatie.gouv.fr) avant tout départ. Pour votre assurance voyage et assistance rapatriement, contactez votre conseiller Auraline.</div>' +
+        '</body></html>';
+    }
+    function downloadChecklist() {
+      var blob = new Blob([buildChecklistHTML()], { type: 'text/html;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'Checklist-voyage-hors-UE-Auraline.html';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+    }
+    function renderVoyage() {
+      updEl.textContent = ''; footEl.innerHTML = '';
+      var levels = [['#2F8B5B','Vigilance normale'],['#E3B341','Vigilance renforcée'],['#D98032','Déconseillé sauf raison impérative'],['#C0392B','Formellement déconseillé']];
+      var legend = levels.map(function (l) { return '<span class="vy-lvl"><span class="dot" style="background:' + l[0] + '"></span>' + l[1] + '</span>'; }).join('');
+      var checklist = CHECKLIST.map(function (sec) {
+        var items = sec[1].map(function (t) { return '<li><span class="cb"></span><span>' + t + '</span></li>'; }).join('');
+        return '<div class="vy-sec"><div class="vy-sec-t">' + sec[0] + '</div><ul class="vy-ul">' + items + '</ul></div>';
+      }).join('');
+      listEl.innerHTML =
+        '<div class="vy-intro">Avant de partir <b>hors de l\'Union européenne</b>, votre carte européenne d\'assurance maladie ne vous couvre plus. Voici les niveaux de risque officiels et la liste des réflexes à ne pas oublier.</div>' +
+        '<div class="vy-card">' +
+          '<div class="vy-sec-t">🌍 Zones à risque — niveaux officiels</div>' +
+          '<div class="vy-legend">' + legend + '</div>' +
+          '<p class="vy-note">La carte officielle pays par pays est tenue à jour par le ministère de l\'Europe et des Affaires étrangères.</p>' +
+          '<a class="vy-link" href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/" target="_blank" rel="noopener">Consulter les Conseils aux voyageurs →</a>' +
+        '</div>' +
+        '<div class="vy-card">' +
+          '<div class="vy-head"><div class="vy-sec-t" style="margin:0">✅ Checklist avant départ hors UE</div>' +
+            '<button class="vy-dl" id="vyDl">⬇ Télécharger la checklist</button></div>' +
+          '<div class="vy-grid">' + checklist + '</div>' +
+        '</div>';
+      document.getElementById('vyDl').addEventListener('click', downloadChecklist);
+    }
+    function load(feedKey) {
+      if (cache[feedKey]) { render(cache[feedKey]); return; }
+      var saved = lsGet(feedKey);
+      var fresh = saved && (Date.now() - saved.t < TTL);
+      if (saved && saved.items && saved.items.length) {
+        cache[feedKey] = saved.items;
+        render(saved.items);
+        stampUpd(saved.t);
+        if (fresh) return;
+      } else {
+        listEl.innerHTML = '<div class="nw-state"><div class="nw-spin"></div>Chargement des dernières actualités…</div>';
+      }
+      fetchFeed(gnewsUrl(FEEDS[feedKey].q))
+        .then(function (doc) {
+          var nodes = [].slice.call(doc.querySelectorAll('item')).slice(0, MAX);
+          if (!nodes.length) throw 0;
+          var items = nodes.map(function (n) {
+            var src = (n.querySelector('source') || {}).textContent || '';
+            var rawTitle = (n.querySelector('title') || {}).textContent || '';
+            var pub = n.querySelector('pubDate');
+            var d = pub ? new Date(pub.textContent) : new Date();
+            return { title: cleanTitle(rawTitle, src), link: (n.querySelector('link') || {}).textContent || '#', source: src, ago: timeAgo(d) };
+          });
+          cache[feedKey] = items;
+          lsSet(feedKey, items);
+          render(items);
+          stampUpd(Date.now());
+          footEl.innerHTML = 'Flux d\'actualités agrégé automatiquement (Google Actualités). Les contenus appartiennent à leurs éditeurs respectifs. Ce module est fourni à titre informatif.';
+        })
+        .catch(function () {
+          if (!(saved && saved.items && saved.items.length)) {
+            listEl.innerHTML = '<div class="nw-state">Le fil d\'actualité est momentanément indisponible.<br>Veuillez réessayer dans quelques instants.</div>';
+          }
+        });
+    }
+    function stampUpd(t) {
+      var now = new Date(t);
+      updEl.textContent = 'Mis à jour le ' + now.toLocaleDateString('fr-FR', {day:'numeric',month:'long'}) + ' à ' + now.toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'});
+    }
+    [].forEach.call(document.querySelectorAll('.nw-tab'), function (t) {
+      t.addEventListener('click', function () {
+        document.querySelectorAll('.nw-tab').forEach(function (x) { x.classList.remove('on'); });
+        t.classList.add('on');
+        if (t.getAttribute('data-panel') === 'voyage') { renderVoyage(); }
+        else { load(t.getAttribute('data-feed')); }
+      });
+    });
+    load('actu');
+  })();
+  </script>
+</body>
+</html>
